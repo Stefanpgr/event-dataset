@@ -4,6 +4,7 @@ import express from 'express'
 import morgan from 'morgan'
 import { config } from 'dotenv'
 import { log } from 'debug'
+import chalk from 'chalk'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import Router from './routes'
@@ -30,7 +31,7 @@ mongoose.connect(
   },
   (error) => {
     // eslint-disable-next-line no-unused-expressions
-    !error ? log('Connected to database') : log('An error occurred while connecting to database: ', error.message)
+    !error ? log(chalk.green.bold('✔ Connected to database')) : log(chalk.red.bold('𐄂 An error occurred while connecting to database: '), error.message)
   },
 )
 app.use(cors())
@@ -58,5 +59,5 @@ app.use((error, req, res, _next) => {
   return res.status(error.status || 500).json({ message })
 })
 
-app.listen(port, () => log('app started at port', port))
+app.listen(port, () => log(chalk.blue.bold('✔ app started at port')))
 export default app

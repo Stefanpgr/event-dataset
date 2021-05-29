@@ -14,7 +14,11 @@ In the project directory, you can run:
 ```bash
 npm start
 ```
+### For development
 
+```bash
+npm run dev
+```
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
