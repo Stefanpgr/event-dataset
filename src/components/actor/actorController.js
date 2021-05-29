@@ -3,7 +3,7 @@
 /* eslint-disable no-undef */
 import asyncHandler from '../../middlewares/async';
 import EventModel from '../events/eventModel';
-import { fiterAndRemoveDuplicates } from '../../helpers'
+import { filterAndRemoveDuplicates } from '../../helpers'
 
 export const updateActorAvatar = asyncHandler(async (req, res) => {
   const { id, avatar_url } = req.body
@@ -24,7 +24,7 @@ export const getActors = asyncHandler(async (req, res) => {
   const events = await EventModel.find()
     .sort({ actor: -1, created_at: -1, 'actor.login': 1 })
 
-  const actors = await fiterAndRemoveDuplicates(events)
+  const actors = await filterAndRemoveDuplicates(events)
 
   return res.status(200).json(actors);
 })
