@@ -31,7 +31,7 @@ export const getActors = asyncHandler(async (req, res) => {
 
 export const getActorsStreak = asyncHandler(async (req, res) => {
   const events = await EventModel.find().sort({ created_at: -1, 'actor.login': 1 })
-  const actors = await fiterAndRemoveDuplicates(events)
+  const actors = await filterAndRemoveDuplicates(events)
 
   return res.status(200).json(actors);
 })
