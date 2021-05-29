@@ -8,7 +8,7 @@ import { fiterAndRemoveDuplicates } from '../../helpers'
 export const updateActorAvatar = asyncHandler(async (req, res) => {
   const { id, avatar_url } = req.body
 
-  const event = await EventModel.findOne({ 'actor.id': id })
+  const event = await EventModel.findOne({ 'actor.id': Number(id) })
 
   if (!event) return res.status(404).json({ message: 'Event with actorId not found.' });
   event.set({
