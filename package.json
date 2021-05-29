@@ -2,7 +2,7 @@
   "name": "express-dataset-challenge",
   "version": "1.0.0",
   "description": "NodeJs API challenge",
-  "main": "server.js",
+  "main": "src/bin/dev",
   "scripts": {
     "dev": "set NODE_ENV=development && babel-watch src/server.js",
     "start": "npm run build && node src/bin/www",
@@ -25,7 +25,9 @@
     "debug": "^4.3.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "moment": "^2.29.1",
     "mongoose": "^5.12.12",
+    "mongoose-update-if-current": "^1.4.0",
     "morgan": "^1.10.0",
     "regenerator-runtime": "^0.13.7"
   },

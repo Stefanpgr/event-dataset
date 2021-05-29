@@ -6,6 +6,7 @@ import { config } from 'dotenv'
 import { log } from 'debug'
 import cors from 'cors'
 import mongoose from 'mongoose'
+import Router from './routes'
 
 config()
 const app = express()
@@ -43,7 +44,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-// app.use(Router)
+app.use(Router)
 
 app.use((req, res, next) => {
   const error = new Error('Your request could not be found')
@@ -53,9 +54,8 @@ app.use((req, res, next) => {
 // eslint-disable-next-line no-unused-vars
 app.use((error, req, res, _next) => {
   const { message } = error
-  res.status(error.status || 500).send({
-    message,
-  })
+  if (error.modifiedPaths) return res.status(error.status || 400).json({ message })
+  return res.status(error.status || 500).json({ message })
 })
 
 app.listen(port, () => log('app started at port', port))
